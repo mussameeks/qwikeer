@@ -1,0 +1,35 @@
+Extraction Report
+============================================================
+Source ZIP: /mnt/data/football-leagues-react-tailwind.zip
+Output Dir: /mnt/data/football-leagues-react-tailwind
+Detected: {
+  "package_json_path": "package.json",
+  "name": "football-leagues-react-tailwind",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "framework": "vite",
+  "has_tailwind": true
+}
+
+Tree (depth<=3):
+football-leagues-react-tailwind/
+📁 src/
+   📁 layouts/
+      📄 AppLayout.jsx
+   📁 pages/
+      📄 League.jsx
+      📄 Matches.jsx
+   📄 App.jsx
+   📄 FootballLeaguesUI.jsx
+   📄 index.css
+   📄 main.jsx
+📄 EXTRACTION_REPORT.txt
+📄 README.md
+📄 index.html
+📄 package.json
+📄 postcss.config.js
+📄 tailwind.config.js
+📄 vite.config.js

@@ -4,6 +4,7 @@ import AppLayout from "./layouts/AppLayout.jsx";
 import FootballLeaguesUI from "./FootballLeaguesUI.jsx";
 import League from "./pages/League.jsx";
 import Matches from "./pages/Matches.jsx";
+import LiveMatches from "./pages/LiveMatches.jsx";
 
 const Page = (title) => () => (
   <div className="p-4">
