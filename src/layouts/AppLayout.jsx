@@ -2,14 +2,19 @@ import React from "react";
 import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import {
   Bell, Search, ChevronDown, Settings,
-  Home, Radio, Star, Newspaper, Trophy,
+  Radio, Star, Newspaper, Trophy,
 } from "lucide-react";
 
 const TopBar = () => {
   const navigate = useNavigate();
   return (
     <div className="sticky top-0 z-20 flex items-center justify-between border-b border-gray-800 bg-black/70 px-4 py-3 backdrop-blur">
-      <button type="button" onClick={() => navigate("/search")} className="rounded-md p-2 hover:bg-gray-800">
+      <button
+        type="button"
+        onClick={() => navigate("/search")}
+        className="rounded-md p-2 hover:bg-gray-800"
+        aria-label="Search"
+      >
         <Search className="w-5 h-5 text-gray-200" />
       </button>
 
@@ -25,7 +30,12 @@ const TopBar = () => {
         <button type="button" className="rounded-md p-2 hover:bg-gray-800" aria-label="Notifications">
           <Bell className="w-5 h-5 text-gray-200" />
         </button>
-        <button type="button" onClick={() => navigate("/settings")} className="rounded-md p-2 hover:bg-gray-800">
+        <button
+          type="button"
+          onClick={() => navigate("/settings")}
+          className="rounded-md p-2 hover:bg-gray-800"
+          aria-label="Settings"
+        >
           <Settings className="w-5 h-5 text-gray-200" />
         </button>
       </div>
@@ -35,11 +45,13 @@ const TopBar = () => {
 
 const BottomNav = () => {
   const tabs = [
-    { icon: Home, label: "All Games", path: "/" },
+    // First tab is now “Leagues” (home)
+    { icon: Trophy, label: "Leagues", path: "/" },
     { icon: Radio, label: "LIVE", path: "/live" },
     { icon: Star, label: "Favourites", path: "/favourites" },
     { icon: Newspaper, label: "News", path: "/news" },
-    { icon: Trophy, label: "Leagues", path: "/leagues" },
+    // Replace the former “Leagues” slot with Settings
+    { icon: Settings, label: "Settings", path: "/settings" },
   ];
   return (
     <nav className="sticky bottom-0 z-20 grid grid-cols-5 border-t border-gray-800 bg-black/80 backdrop-blur">
