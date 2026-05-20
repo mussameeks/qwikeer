@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+/*
+  Qwikeer global styles
+
+  Design direction:
+  - clean
+  - modern
+  - high contrast
+  - soft rounded cards
+  - orange accent for primary actions
+*/
+
+:root {
+  --background: #f8fafc;
+  --foreground: #020617;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Better text rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Clean selection color */
+::selection {
+  background: rgba(255, 122, 26, 0.25);
+}
+
+/* Remove ugly number input arrows in some browsers */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+input[type="number"] {
+  appearance: textfield;
+}
+
+/* Simple scrollbar polish */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
