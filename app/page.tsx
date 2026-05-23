@@ -6,7 +6,13 @@ import Link from "next/link"
  * Simple first page for the clean rebuild.
  * Later, we can turn this into a full marketing homepage.
  */
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  other: {
+    'base:app_id': '6a0f347e7f17d4dc169c4495',
+  },
+};
 export default function HomePage() {
   return (
     <main className="p-6">

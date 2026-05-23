@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useEffect, useMemo, useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { supabase } from "@/lib/supabase"
+import { Web3WalletCard } from "@/components/web3-wallet-card"
 
 /**
  * Qwikeer Wallet Page
@@ -11,6 +12,7 @@ import { supabase } from "@/lib/supabase"
  * User can:
  * - view wallet balance
  * - view verification status and limits
+ * - connect/save Web3 embedded wallet
  * - create manual deposit/withdrawal request
  * - pay by card through Flutterwave
  * - verify Flutterwave payment after redirect
@@ -241,7 +243,9 @@ export default function WalletPage() {
     if (!contentType.includes("application/json")) {
       const text = await res.text()
       console.error("Non-JSON response from /api/profile:", text.slice(0, 500))
-      throw new Error(`/api/profile returned non-JSON response. Status: ${res.status}`)
+      throw new Error(
+        `/api/profile returned non-JSON response. Status: ${res.status}`
+      )
     }
 
     const data: ProfileResponse = await res.json()
@@ -349,7 +353,7 @@ export default function WalletPage() {
 
   async function verifyFlutterwaveRedirectPayment() {
     const payment = searchParams.get("payment")
-    const txRef = searchParams.get("tx_ref") || searchParams.get("tx_ref")
+    const txRef = searchParams.get("tx_ref")
     const transactionId =
       searchParams.get("transaction_id") || searchParams.get("transactionId")
     const status = searchParams.get("status")
@@ -507,7 +511,9 @@ export default function WalletPage() {
       }
 
       setSuccess(
-        `${activeType === "deposit" ? "Deposit" : "Withdrawal"} request created successfully.`
+        `${
+          activeType === "deposit" ? "Deposit" : "Withdrawal"
+        } request created successfully.`
       )
 
       setPaymentReference("")
@@ -515,7 +521,9 @@ export default function WalletPage() {
 
       await loadWallet({ silent: true })
     } catch (error) {
-      setError(error instanceof Error ? error.message : "Could not create request.")
+      setError(
+        error instanceof Error ? error.message : "Could not create request."
+      )
     } finally {
       setSubmitting(false)
     }
@@ -586,7 +594,9 @@ export default function WalletPage() {
 
       window.location.href = data.checkoutUrl
     } catch (error) {
-      setError(error instanceof Error ? error.message : "Could not start payment.")
+      setError(
+        error instanceof Error ? error.message : "Could not start payment."
+      )
       setPayingByCard(false)
     }
   }
@@ -636,7 +646,9 @@ export default function WalletPage() {
       setSuccess("Request cancelled successfully.")
       await loadWallet({ silent: true })
     } catch (error) {
-      setError(error instanceof Error ? error.message : "Could not cancel request.")
+      setError(
+        error instanceof Error ? error.message : "Could not cancel request."
+      )
     } finally {
       setCancelingId(null)
     }
@@ -678,8 +690,9 @@ export default function WalletPage() {
               </h1>
 
               <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-500">
-                Request manual deposits/withdrawals or fund your wallet by card.
-                Wallet credit happens only after verified payment.
+                Request manual deposits/withdrawals, fund your wallet by card,
+                and connect your Web3 wallet for future on-chain Qwikeer
+                markets.
               </p>
 
               {profileData?.user?.email && (
@@ -757,6 +770,8 @@ export default function WalletPage() {
             services.
           </section>
         )}
+
+        <Web3WalletCard />
 
         <section className="grid gap-4 md:grid-cols-5">
           <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
