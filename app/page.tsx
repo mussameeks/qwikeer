@@ -10,7 +10,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   other: {
-    'base:app_id': '6a0f347e7f17d4dc169c4495',
+    'base:app_id': '6a117c10355ac57b9a9b63df',
   },
 };
 export default function HomePage() {
